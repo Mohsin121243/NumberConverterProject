@@ -22,9 +22,8 @@ public class ConverterRunner {
         System.out.println("\n\nDigit array: " + Arrays.toString(digits));
         System.out.println("Number: " + nc.displayOriginalNumber());
         System.out.print("Number to octal: "  );
-        System.out.println(Arrays.toString(nc.convertToOctal()));
-        System.out.print("Number to binary: " + Arrays.toString(nc.convertToOctal()));
-        System.out.println(Arrays.toString(nc.convertToBinary()));
+        System.out.print("To decimal: ");
+        System.out.println(nc.convertToDecimal());
 
 
 

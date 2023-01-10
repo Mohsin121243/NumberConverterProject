@@ -29,93 +29,47 @@ public class NumberConverter {
         return digits;
     }
 
-    public int[] convertToDecimal() {
-        if (base == 8) {
-            int x = 0;
-            int tempNum = number;
-            int[] output;
-            while (tempNum != 0) {
-                tempNum = (tempNum / 8) - (tempNum % 8);
-                x = x + 1;
+    public int convertToDecimal() {
+        if(base == 8){
+        int theBase = 0, pow = 0;
+        int[] a = new int[Integer.toString(number).length()];
 
-            }
-            output = new int[x];
-            int y = 0;
-            while (tempNum != 0) {
-                int z = tempNum % 8;
-                tempNum = (tempNum / 8) - (z);
-                output[x - y] = z;
-                y++;
-            }
-            return output;
+        for (int i = 0; i < Integer.toString(number).length(); i++) {
+            a[i] = Integer.toString(number).charAt(i) - '0'; //Convert into int array
         }
-        if (base == 2) {
-            int x = 0;
-            int tempNum = number;
-            int[] output;
-            while (tempNum != 0) {
-                tempNum = (tempNum / 2) - (tempNum % 2);
-                x = x + 1;
 
-            }
-            output = new int[x];
-            int y = 0;
-            while (tempNum != 0) {
-                int z = tempNum % 2;
-                tempNum = (tempNum / 2) - (z);
-                output[x - y] = z;
-                y++;
-            }
-            return output;
-
+        for (int i = a.length - 1 ; i >= 0 ; i--) {
+            theBase += a[i] * Math.pow(8,pow); //Generalised formula for conversion
+            pow++;
         }
-        else return null;
+            return theBase;
+        }
+        return 0;
     }
 
     public int[] convertToBinary() {
-        int[] testArray = new int[5];
-        if (base == 10) {
-            int x = 0;
-            int tempNum = number;
-            int[] output;
-            while (tempNum != 0) {
-                tempNum = (tempNum / 2) - (tempNum % 2);
-                x = x + 1;
-
-            }
-            output = new int[x];
-            int y = 0;
-            while (tempNum != 0) {
-                int z = tempNum % 2;
-                tempNum = (tempNum / 2) - (z);
-                output[x - y] = z;
-                y++;
-            }
-            return output;
-        }
-        else return testArray;
+     return null;
     }
     public int[] convertToOctal()
     {
-        int[] testArray = new int[5];
-        if (base == 10) {
+        return null;
+}}
+/*    if (base == 8) {
+            int tempNumber = number;
+            String stringTempNumber = Integer.toString(tempNumber);
             int x = 0;
-            int tempNum = number;
-            int[] output;
-            while (tempNum != 0) {
-                tempNum = (tempNum / 8) - (tempNum % 8);
-                x = x + 1;
+            int resultLength;
+            int result = 0;
+            while(x!=stringTempNumber.length()-1){
+             resultLength = Integer.parseInt(stringTempNumber.substring(stringTempNumber.length()-(x-1),stringTempNumber.length()-x));
+            result = result + resultLength*(int)(Math.pow(8, (stringTempNumber.length()-x)));
+            x++;
+            }
+            int[] finalValue = new int[(Integer.toString(result).length())];
+            int z = 0;
+            while(z != Integer.toString(tempNumber).length() ){
+                String otherString = (Integer.toString(result)).substring(x,x+1);
+                finalValue[z] = Integer.parseInt(otherString);
 
             }
-            output = new int[x];
-            int y = 0;
-            while (tempNum != 0) {
-                int z = tempNum % 8;
-                tempNum = (tempNum / 8) - (z);
-                output[x - y] = z;
-                y++;
-            }
-            return output;
-        }
-        else return testArray;
-}}
+            return finalValue; */
