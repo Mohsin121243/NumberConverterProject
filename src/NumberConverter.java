@@ -29,7 +29,7 @@ public class NumberConverter {
         return digits;
     }
 
-    public int convertToDecimal() {
+    public int[] convertToDecimal() {
         if(base == 8){
         int theBase = 0, pow = 0;
         int[] a = new int[Integer.toString(number).length()];
@@ -42,7 +42,10 @@ public class NumberConverter {
             theBase += a[i] * Math.pow(8,pow); //Generalised formula for conversion
             pow++;
         }
-            return theBase;
+        int[] finalArray = new int[Integer.toString(theBase).length()];
+        for(int x = 0 ; x<Integer.toString(theBase).length();x++){
+
+        }
         }
         return 0;
     }
