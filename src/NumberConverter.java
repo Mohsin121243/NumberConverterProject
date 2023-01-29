@@ -1,19 +1,21 @@
 public class NumberConverter {
     int[] digits;
     int base;
+    boolean checker;
 
     int number;
 
     public NumberConverter(int number, int base) {
         String numberAsString = Integer.toString(number);
         this.number = number;
+        this.base = base;
         digits = new int[numberAsString.length()];
         for (int i = 0; i < numberAsString.length(); i++) {
             String single = numberAsString.substring(i,i+1);
             int d = Integer.parseInt(single);
             digits[i] = d;
-        }
-        this.base = base;
+            }
+
     }
 
     public String displayOriginalNumber() {
@@ -30,8 +32,9 @@ public class NumberConverter {
     }
 
     public int[] convertToDecimal() {
+        int theBase = 0 ;
         if(base == 8){
-        int theBase = 0, pow = 0;
+        int pow = 0;
         int[] a = new int[Integer.toString(number).length()];
 
         for (int i = 0; i < Integer.toString(number).length(); i++) {
@@ -42,37 +45,122 @@ public class NumberConverter {
             theBase += a[i] * Math.pow(8,pow); //Generalised formula for conversion
             pow++;
         }
-        int[] finalArray = new int[Integer.toString(theBase).length()];
-        for(int x = 0 ; x<Integer.toString(theBase).length();x++){
 
         }
+        if(base == 2){
+            if(checker == false){
+                return null;
+            }
+            int pow = 0;
+            int[] a = new int[Integer.toString(number).length()];
+
+            for (int i = 0; i < Integer.toString(number).length(); i++) {
+                a[i] = Integer.toString(number).charAt(i) - '0'; //Convert into int array
+            }
+
+            for (int i = a.length - 1 ; i >= 0 ; i--) {
+                theBase += a[i] * Math.pow(2,pow); //Generalised formula for conversion
+                pow++;
+            }
+
         }
-        return 0;
+        int[] finalArray = new int[Integer.toString(theBase).length()];
+        int temp = theBase;
+        int i = finalArray.length - 1;
+        while ( temp!= 0) {
+            finalArray[i] = temp %10;
+            temp /= 10;
+            i--;
+        }
+        return finalArray;
+
     }
 
     public int[] convertToBinary() {
-     return null;
+        int i = 0;
+        int decimal = 0;
+        int binary = 0;
+        if (base == 8) {
+            while (number != 0) {
+                decimal += (number % 10) * Math.pow(8, i);
+                ++i;
+                number /= 10;
+            }
+
+            i = 1;
+
+            while (decimal != 0) {
+                binary += (decimal % 2) * i;
+                decimal /= 2;
+                i *= 10;
+            }
+
+
+        }
+        if (base == 10) {
+            decimal = number;
+            i = 1;
+            while (decimal != 0) {
+                binary += (decimal % 2) * i;
+                decimal /= 2;
+                i *= 10;
+            }
+
+
+        }
+        int[] finalArray = new int[Integer.toString(binary).length()];
+        int temp = binary;
+        int counter = finalArray.length - 1;
+        while (temp != 0) {
+            finalArray[counter] = temp % 10;
+            temp /= 10;
+            counter--;
+
+        }
+        return finalArray;
     }
     public int[] convertToOctal()
     {
-        return null;
-}}
-/*    if (base == 8) {
-            int tempNumber = number;
-            String stringTempNumber = Integer.toString(tempNumber);
-            int x = 0;
-            int resultLength;
-            int result = 0;
-            while(x!=stringTempNumber.length()-1){
-             resultLength = Integer.parseInt(stringTempNumber.substring(stringTempNumber.length()-(x-1),stringTempNumber.length()-x));
-            result = result + resultLength*(int)(Math.pow(8, (stringTempNumber.length()-x)));
-            x++;
+        int i = 0;
+        int decimal = 0;
+        int octal = 0;
+        if (base == 2) {
+            while (number != 0) {
+                decimal += (number % 10) * Math.pow(8, i);
+                ++i;
+                number /= 10;
             }
-            int[] finalValue = new int[(Integer.toString(result).length())];
-            int z = 0;
-            while(z != Integer.toString(tempNumber).length() ){
-                String otherString = (Integer.toString(result)).substring(x,x+1);
-                finalValue[z] = Integer.parseInt(otherString);
 
+            i = 1;
+
+            while (decimal != 0) {
+                octal += (decimal % 8) * i;
+                decimal /= 8;
+                i *= 10;
             }
-            return finalValue; */
+
+
+        }
+        if (base == 10) {
+            decimal = number;
+            i = 1;
+            while (decimal != 0) {
+                octal += (decimal % 8) * i;
+                decimal /= 8;
+                i *= 10;
+            }
+
+
+        }
+        int[] finalArray = new int[Integer.toString(octal).length()];
+        int temp = octal;
+        int counter = finalArray.length - 1;
+        while (temp != 0) {
+            finalArray[counter] = temp % 10;
+            temp /= 10;
+            counter--;
+
+        }
+        return finalArray;
+}}
+

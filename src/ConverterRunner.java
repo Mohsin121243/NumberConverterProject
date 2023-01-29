@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -21,9 +22,13 @@ public class ConverterRunner {
         int[] digits = nc.getDigits();
         System.out.println("\n\nDigit array: " + Arrays.toString(digits));
         System.out.println("Number: " + nc.displayOriginalNumber());
-        System.out.print("Number to octal: "  );
+        System.out.println("Number to octal: "  );
         System.out.print("To decimal: ");
-        System.out.println(nc.convertToDecimal());
+        System.out.println(Arrays.toString(nc.convertToDecimal()));
+        System.out.print("To binary: ");
+        System.out.println(Arrays.toString(nc.convertToBinary()));
+        System.out.print("To octal");
+        System.out.println(Arrays.toString(nc.convertToOctal()));
 
 
 
