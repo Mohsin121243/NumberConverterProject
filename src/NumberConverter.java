@@ -380,8 +380,22 @@ public class NumberConverter {
                     }
                     else {
                         for(int a =0; a<count-1;a++) {
-                            returnArray[a] = lowerCase[(decimal % (baseNum * tester))];
-                            tester /= 10;
+                            int test = decimal;
+                            while(test>62){
+                                test/=baseNum;
+                                if(a==0){tester = test;}
+                            }
+                            returnArray[a] = lowerCase[test];
+                            if(a>0){
+                                int newTest = baseNum;
+                                while(newTest<decimal){
+                                    newTest*=tester ;
+                                }
+                                newTest -= decimal%baseNum;
+                                newTest/=baseNum;
+                                returnArray[a] = lowerCase[newTest];
+                            }
+
                         }
                     }
 
