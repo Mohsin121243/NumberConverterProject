@@ -379,21 +379,19 @@ public class NumberConverter {
                         returnArray[0] = lowerCase[decimal/baseNum];
                     }
                     else {
-                        for(int a =0; a<count-1;a++) {
+                        for(int a =0; a<count;a++) {
                             int test = decimal;
                             while(test>62){
                                 test/=baseNum;
                                 if(a==0){tester = test;}
                             }
                             returnArray[a] = lowerCase[test];
-                            if(a>0){
-                                int newTest = baseNum;
-                                while(newTest<decimal){
-                                    newTest*=tester ;
+                            if(a>=1){
+                                int demo = decimal % (int)Math.pow(baseNum,a+1);
+                                for(int y = 0; demo>baseNum;y++){
+                                    demo/=baseNum;
                                 }
-                                newTest -= decimal%baseNum;
-                                newTest/=baseNum;
-                                returnArray[a] = lowerCase[newTest];
+                                returnArray[a] = lowerCase[demo];
                             }
 
                         }
@@ -413,6 +411,7 @@ public class NumberConverter {
                                     for(int a =0; a<count-1;a++) {
                                         returnArray[a] = specialCase[(decimal % (baseNum * tester))];
                                         tester /= 10;
+
                                     }
                                 }
                                  String lastDigit = specialCase[(decimal%baseNum)-1];
@@ -428,9 +427,16 @@ public class NumberConverter {
                                     returnArray[0] = specialCase[decimal/baseNum];
                                 }
                                 else {
-                                    for(int a =0; a<count-1;a++) {
+                                    for(int a =0; a<count;a++) {
                                         returnArray[a] = specialCase[(decimal % (baseNum * tester))];
                                         tester /= 10;
+                                        if(a>=1){
+                                            int demo = decimal % (int)Math.pow(baseNum,a+1);
+                                            for(int y = 0; demo>baseNum;y++){
+                                                demo/=baseNum;
+                                            }
+                                            returnArray[a] = specialCase[demo];
+                                        }
                                     }
                                 }
                                 String lastDigit = specialCase[decimal%baseNum];
