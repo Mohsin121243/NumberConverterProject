@@ -16,7 +16,7 @@ public class ConverterRunner {
         String number = s.nextLine();
         String n = number;
 
-        s.close();
+
 
         NumberConverter nc = new NumberConverter(n, base);
         int[] digits = nc.getDigits();
@@ -31,6 +31,16 @@ public class ConverterRunner {
         System.out.println(Arrays.toString(nc.convertToOctal()));
         System.out.print("To HexaDecimal");
         System.out.println(Arrays.toString(nc.convertToHexaDecimal()));
+
+
+
+        System.out.print("Type a number in base 10 to convert to another base: ");
+        String newChoice = s.nextLine();
+        int decimal = Integer.parseInt(newChoice);
+        System.out.println("Now type the base you want to convert to: ");
+        String newBase = s.nextLine();
+        int baseNew = Integer.parseInt(newBase);
+        System.out.println(Arrays.toString(nc.baseConverter(decimal, baseNew)));
 
 
 
