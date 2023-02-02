@@ -320,7 +320,11 @@ public class NumberConverter {
 
             }
             else{
-                theNum = number;
+                String[] digit = new String[digits.length];
+                for(int i = 0; i<digits.length; i++){
+                    digit[i] = Integer.toString(digits[i]);
+                }
+                return digit;
             }
 
         }
@@ -364,7 +368,7 @@ public class NumberConverter {
     }
 
     public String[] baseConverter(int decimal, int baseNum){
-        String[] lowerCase = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+        String[] lowerCase = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","+","/"};
 
                 int temp = decimal;
                 int count = 0;
@@ -398,52 +402,7 @@ public class NumberConverter {
                     }
 
 
-                        if(baseNum==64) {
-                            if (decimal < 64) {
-                                String[] specialCase = {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "/"};
-                                 returnArray = new String[count+1];
-                                 tester = (int)Math.pow(10, returnArray.length-2);
 
-                                if(returnArray.length==2 ){
-                                    returnArray[0] = specialCase[decimal/baseNum];
-                                }
-                                else {
-                                    for(int a =0; a<count-1;a++) {
-                                        returnArray[a] = specialCase[(decimal % (baseNum * tester))];
-                                        tester /= 10;
-
-                                    }
-                                }
-                                 String lastDigit = specialCase[(decimal%baseNum)-1];
-
-                                returnArray[returnArray.length-1] = lastDigit;
-                               return returnArray;
-                            } else {
-                                String[] specialCase = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "/"};
-                                returnArray = new String[count+1];
-                                tester = (int)Math.pow(10, returnArray.length-2);
-
-                                if(returnArray.length==2 ){
-                                    returnArray[0] = specialCase[decimal/baseNum];
-                                }
-                                else {
-                                    for(int a =0; a<count;a++) {
-                                        returnArray[a] = specialCase[(decimal % (baseNum * tester))];
-                                        tester /= 10;
-                                        if(a>=1){
-                                            int demo = decimal % (int)Math.pow(baseNum,a+1);
-                                            for(int y = 0; demo>baseNum;y++){
-                                                demo/=baseNum;
-                                            }
-                                            returnArray[a] = specialCase[demo];
-                                        }
-                                    }
-                                }
-                                String lastDigit = specialCase[decimal%baseNum];
-                                returnArray[returnArray.length-1] = lastDigit;
-                                return returnArray;
-                            }
-                        }
         String lastDigit = lowerCase[decimal%baseNum];
         returnArray[returnArray.length-1] = lastDigit;
                 return returnArray;

@@ -22,15 +22,22 @@ public class ConverterRunner {
         int[] digits = nc.getDigits();
         System.out.println("\n\nDigit array: " + Arrays.toString(digits));
         System.out.println("Number: " + nc.displayOriginalNumber());
-        System.out.println("Number to octal: "  );
-        System.out.print("To decimal: ");
-        System.out.println(Arrays.toString(nc.convertToDecimal()));
+        if(base!=10) {
+            System.out.print("To decimal: ");
+            System.out.println(Arrays.toString(nc.convertToDecimal()));
+        }
+        if(base!=2){
         System.out.print("To binary: ");
         System.out.println(Arrays.toString(nc.convertToBinary()));
-        System.out.print("To octal: ");
-        System.out.println(Arrays.toString(nc.convertToOctal()));
-        System.out.print("To HexaDecimal");
-        System.out.println(Arrays.toString(nc.convertToHexaDecimal()));
+        }
+        if(base!=8) {
+            System.out.print("To octal: ");
+            System.out.println(Arrays.toString(nc.convertToOctal()));
+        }
+        if(base!=16) {
+            System.out.print("To HexaDecimal");
+            System.out.println(Arrays.toString(nc.convertToHexaDecimal()));
+        }
 
 
 
