@@ -34,7 +34,7 @@ public class NumberConverter {
         return digits;
     }
 
-    public int[] convertToDecimal() {
+    public int convertToDecimal() {
         int theNum = 0 ;
         if(base == 8){
         int pow = 0;
@@ -61,7 +61,7 @@ public class NumberConverter {
                     a[i] = Integer.toString(number).charAt(i) - '0';
                 }
                 else{
-                    return null;
+                    return 0;
                 }
             }
 
@@ -90,7 +90,7 @@ public class NumberConverter {
                 number = Integer.parseInt(stringNumber);
             }
             if(number<=15 && number >= 10){
-                return null;
+                return 0;
             }
             theNum = number;
         }
@@ -103,11 +103,11 @@ public class NumberConverter {
             i--;
         }
         tester = finalArray;
-        return finalArray;
+        return theNum;
 
     }
 
-    public int[] convertToBinary() {
+    public int convertToBinary() {
         int i = 0;
         int decimal = 0;
         int binary = 0;
@@ -158,7 +158,7 @@ public class NumberConverter {
                 number = Integer.parseInt(stringNumber);
             }
             if(number<=15 && number >= 10){
-                return null;
+                return 0;
             }
             decimal = number;
             i = 1;
@@ -177,27 +177,23 @@ public class NumberConverter {
             counter--;
 
         }
-        return finalArray;
+        return binary;
     }
-    public int[] convertToOctal()
+    public int convertToOctal()
     {
         int i = 0;
         int decimal = 0;
         int octal = 0;
         if (base == 2) {
-            while (number != 0) {
-                decimal += (number % 10) * Math.pow(8, i);
-                ++i;
-                number /= 10;
-            }
-
+            int theNum = NumberConverter.convertToDecimal(number,base);
+            decimal = theNum;
             i = 1;
-
             while (decimal != 0) {
                 octal += (decimal % 8) * i;
                 decimal /= 8;
                 i *= 10;
             }
+
 
 
         }
@@ -231,7 +227,7 @@ public class NumberConverter {
                 number = Integer.parseInt(stringNumber);
             }
             if(number<=15 && number >= 10){
-                return null;
+                return 0;
             }
             decimal = number;
             i = 1;
@@ -250,72 +246,53 @@ public class NumberConverter {
             counter--;
 
         }
-        return finalArray;
+        return octal;
 }
 
-        public String[] convertToHexaDecimal(){
+        public String convertToHexaDecimal(){
             int theNum = 0 ;
             if(base == 8){
-                int pow = 0;
-                int[] a = new int[Integer.toString(number).length()];
-
+                int base10 = 0;
                 for (int i = 0; i < Integer.toString(number).length(); i++) {
-                    a[i] = Integer.toString(number).charAt(i) - '0'; //Convert into int array
+                    int digit = Character.getNumericValue(Integer.toString(number).charAt(i));
+                    base10 = base10 * 8 + digit;
                 }
-
-                for (int i = a.length - 1 ; i >= 0 ; i--) {
-                    theNum += a[i] * Math.pow(8,pow); //Generalised formula for conversion
-                    pow++;
-                }
-
+                theNum = base10;
             }
             if(base == 2){
-                int pow = 0;
-                int[] a = new int[Integer.toString(number).length()];
-
+                int base10 = 0;
                 for (int i = 0; i < Integer.toString(number).length(); i++) {
-
-                    a[i] = Integer.toString(number).charAt(i) - '0';
-                    if(a[i]==1 || a[i] == 0){
-                        a[i] = Integer.toString(number).charAt(i) - '0';
-                    }
-                    else{
-                        return null;
-                    }
+                    int digit = Character.getNumericValue(Integer.toString(number).charAt(i));
+                    base10 = base10 * 2 + digit;
                 }
-
-                for (int i = a.length - 1 ; i >= 0 ; i--) {
-                    theNum += a[i] * Math.pow(2,pow); //Generalised formula for conversion
-                    pow++;
-                }
-
+                theNum = base10;
             }
         if(base == 10){
-            String[] alternate = new String[1];
+            String alternate ;
             if(number == 10){
                 stringNumber = "A";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
             } else if (number==11) {
                 stringNumber = "B";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
             } else if (number == 12) {
                 stringNumber = "C";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
             } else if (number == 13) {
                 stringNumber = "D";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
 
             } else if (number == 14) {
                 stringNumber = "E";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
             } else if (number == 15) {
                 stringNumber = "F";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
 
             }
@@ -324,36 +301,36 @@ public class NumberConverter {
                 for(int i = 0; i<digits.length; i++){
                     digit[i] = Integer.toString(digits[i]);
                 }
-                return digit;
+                return Integer.toString(number);
             }
 
         }
 
-            String[] alternate = new String[1];
+            String alternate ;
             if(theNum == 10){
                 stringNumber = "A";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
             } else if (theNum==11) {
                 stringNumber = "B";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
             } else if (theNum == 12) {
                 stringNumber = "C";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
             } else if (theNum == 13) {
                 stringNumber = "D";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
 
             } else if (theNum == 14) {
                 stringNumber = "E";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
             } else if (theNum == 15) {
                 stringNumber = "F";
-                alternate[0] = stringNumber;
+                alternate = stringNumber;
                 return alternate;
 
             }
@@ -363,51 +340,107 @@ public class NumberConverter {
                 strArray[z] = String.valueOf(finalArray[z]);
             }
 
-        return strArray;
+        return Integer.toString(theNum);
 
     }
 
-    public String[] baseConverter(int decimal, int baseNum){
+
+    public static int convertToDecimal(int number, int base) {
+        int theNum = 0 ;
+        if(base == 8){
+            int pow = 0;
+            int[] a = new int[Integer.toString(number).length()];
+
+            for (int i = 0; i < Integer.toString(number).length(); i++) {
+                a[i] = Integer.toString(number).charAt(i) - '0'; //Convert into int array
+            }
+
+            for (int i = a.length - 1 ; i >= 0 ; i--) {
+                theNum += a[i] * Math.pow(8,pow); //Generalised formula for conversion
+                pow++;
+            }
+
+        }
+        if(base == 2){
+            int pow = 0;
+            int[] a = new int[Integer.toString(number).length()];
+
+            for (int i = 0; i < Integer.toString(number).length(); i++) {
+
+                a[i] = Integer.toString(number).charAt(i) - '0';
+                if(a[i]==1 || a[i] == 0){
+                    a[i] = Integer.toString(number).charAt(i) - '0';
+                }
+                else{
+                    return 0;
+                }
+            }
+
+            for (int i = a.length - 1 ; i >= 0 ; i--) {
+                theNum += a[i] * Math.pow(2,pow); //Generalised formula for conversion
+                pow++;
+            }
+
+        }
+
+        int[] finalArray = new int[Integer.toString(theNum).length()];
+        int temp = theNum;
+        int i = finalArray.length - 1;
+        while ( temp!= 0) {
+            finalArray[i] = temp %10;
+            temp /= 10;
+            i--;
+        }
+        tester = finalArray;
+        return theNum;
+
+    }
+
+    public String baseConverter(int decimal, int baseNum){
         String[] lowerCase = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","+","/"};
 
-                int temp = decimal;
-                int count = 0;
-                for(int c = 0; temp!=0; c++){
-                    temp/=baseNum;
-                    count = c;
+        int temp = decimal;
+        int count = 0;
+        for(int c = 0; temp!=0; c++){
+            temp/=baseNum;
+            count = c;
+        }
+        String[] returnArray = new String[count+1];
+        int tester = (int)Math.pow(10, returnArray.length-2);
+
+        if(returnArray.length==2 ){
+            returnArray[0] = lowerCase[decimal/baseNum];
+        }
+        else {
+            for(int a =0; a<count;a++) {
+                int test = decimal;
+                while(test>62){
+                    test/=baseNum;
+                    if(a==0){tester = test;}
                 }
-                String[] returnArray = new String[count+1];
-                int tester = (int)Math.pow(10, returnArray.length-2);
-
-                    if(returnArray.length==2 ){
-                        returnArray[0] = lowerCase[decimal/baseNum];
+                returnArray[a] = lowerCase[test];
+                if(a>=1){
+                    int demo = decimal % (int)Math.pow(baseNum,a+1);
+                    for(int y = 0; demo>baseNum;y++){
+                        demo/=baseNum;
                     }
-                    else {
-                        for(int a =0; a<count;a++) {
-                            int test = decimal;
-                            while(test>62){
-                                test/=baseNum;
-                                if(a==0){tester = test;}
-                            }
-                            returnArray[a] = lowerCase[test];
-                            if(a>=1){
-                                int demo = decimal % (int)Math.pow(baseNum,a+1);
-                                for(int y = 0; demo>baseNum;y++){
-                                    demo/=baseNum;
-                                }
-                                returnArray[a] = lowerCase[demo];
-                            }
+                    returnArray[a] = lowerCase[demo];
+                }
 
-                        }
-                    }
+            }
+        }
 
 
 
         String lastDigit = lowerCase[decimal%baseNum];
         returnArray[returnArray.length-1] = lastDigit;
-                return returnArray;
-
+        String value = "";
+        for(int v = 0 ; v< returnArray.length;v++){
+            value = value + returnArray[v];
         }
+        return value;
+
+    }
 
     }
 

@@ -24,19 +24,19 @@ public class ConverterRunner {
         System.out.println("Number: " + nc.displayOriginalNumber());
         if(base!=10) {
             System.out.print("To decimal: ");
-            System.out.println(Arrays.toString(nc.convertToDecimal()));
+            System.out.println((nc.convertToDecimal()));
         }
         if(base!=2){
         System.out.print("To binary: ");
-        System.out.println(Arrays.toString(nc.convertToBinary()));
+        System.out.println((nc.convertToBinary()));
         }
         if(base!=8) {
             System.out.print("To octal: ");
-            System.out.println(Arrays.toString(nc.convertToOctal()));
+            System.out.println((nc.convertToOctal()));
         }
         if(base!=16) {
-            System.out.print("To HexaDecimal");
-            System.out.println(Arrays.toString(nc.convertToHexaDecimal()));
+            System.out.print("To HexaDecimal: ");
+            System.out.println((nc.convertToHexaDecimal()));
         }
 
 
@@ -47,7 +47,7 @@ public class ConverterRunner {
         System.out.println("Now type the base you want to convert to: ");
         String newBase = s.nextLine();
         int baseNew = Integer.parseInt(newBase);
-        System.out.println(Arrays.toString(nc.baseConverter(decimal, baseNew)));
+        System.out.println((nc.baseConverter(decimal, baseNew)));
 
 
 
